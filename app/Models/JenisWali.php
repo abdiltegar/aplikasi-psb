@@ -33,6 +33,6 @@ class JenisWali extends Model
 
 	public function wali_murids()
 	{
-		return $this->hasMany(WaliMurid::class);
+		return $this->hasMany(WaliMurid::class, 'jenis_wali_id', 'jenis_wali_id');
 	}
 }

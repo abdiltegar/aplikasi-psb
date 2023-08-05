@@ -17,3 +17,8 @@ body{
     max-height: 200px !important;
     padding: 5px;
 }
+
+.nav-link.active{
+    background-color: rgba(0,0,0,.075) !important;
+    color: black !important;
+}

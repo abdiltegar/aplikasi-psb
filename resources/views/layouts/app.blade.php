@@ -54,6 +54,21 @@
                                 </li>
                             @endif -->
                         @else
+                            @if( Auth::user()->role_id == 1 )
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->segment(1) == 'home' ? 'active' : 'link-dark' }}" href="{{ route('home') }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->segment(1) == 'data-orang-tua' ? 'active' : 'link-dark' }}" href="{{ route('data-orang-tua') }}">Data Orang Tua</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->segment(1) == 'berkas' ? 'active' : 'link-dark' }}" href="{{ route('berkas') }}">Berkas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->segment(1) == 'berkas' ? 'active' : 'link-dark' }}" href="{{ route('berkas') }}">Informasi</a>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -77,7 +92,7 @@
             </div>
         </nav>
 
-        <main class="py-4 bg-content">
+        <main class="bg-content">
             @yield('content')
         </main>
 

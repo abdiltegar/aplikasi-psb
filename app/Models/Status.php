@@ -33,6 +33,6 @@ class Status extends Model
 
 	public function siswas()
 	{
-		return $this->hasMany(Siswa::class);
+		return $this->hasMany(Siswa::class, 'status_id', 'status_id');
 	}
 }

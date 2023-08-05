@@ -56,16 +56,18 @@ class Siswa extends Model
 		'tempat_lahir',
 		'alamat',
 		'photo',
+		'ijazah',
+		'kk',
 		'status_id'
 	];
 
 	public function status()
 	{
-		return $this->belongsTo(Status::class);
+		return $this->belongsTo(Status::class, 'status_id', 'status_id');
 	}
 
 	public function wali_murids()
 	{
-		return $this->hasMany(WaliMurid::class);
+		return $this->hasMany(WaliMurid::class, 'siswa_id', 'siswa_id');
 	}
 }

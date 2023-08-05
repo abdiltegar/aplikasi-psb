@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +23,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $data = [];
+
+        $data['siswa'] = null;
+
+        if(auth()->user()->role_id == 2){
+            $data['siswa'] = Siswa::with('status')->with('wali_murids')->where('user_id',auth()->user()->id)->first();
+        }
+
+        return view('home.index', $data);
     }
 }

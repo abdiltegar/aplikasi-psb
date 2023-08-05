@@ -49,11 +49,11 @@ class WaliMurid extends Model
 
 	public function jenis_wali()
 	{
-		return $this->belongsTo(JenisWali::class);
+		return $this->belongsTo(JenisWali::class, 'jenis_wali_id', 'jenis_wali_id');
 	}
 
 	public function siswa()
 	{
-		return $this->belongsTo(Siswa::class);
+		return $this->belongsTo(Siswa::class, 'siswa_id', 'siswa_id');
 	}
 }
