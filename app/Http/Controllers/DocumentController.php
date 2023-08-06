@@ -14,6 +14,12 @@ class DocumentController extends Controller
     }
 
     public function index(Request $request){
+
+        // checking role
+        if(!(auth()->user()->role_id == 2)){
+            abort(403, 'Mohon maaf . Anda tidak memiliki hak akses untuk mengakses halaman ini.');
+        }
+        
         $data = [];
 
         $data['siswa'] = Siswa::with('status')->where('user_id', auth()->user()->id)->first();

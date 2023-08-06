@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,15 +27,26 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::controller(ParentController::class)->group(function () {
     Route::get('data-orang-tua', 'index')->name('data-orang-tua');
-    Route::post('data-orang-tua/store', 'store')->name('data-orang-tua.store');
-    Route::put('data-orang-tua/update/{id?}', 'update')->name('data-orang-tua.update');
-    Route::delete('data-orang-tua/destroy/{id?}', 'destroy')->name('data-orang-tua.destroy');
+    Route::patch('data-orang-tua', 'patch')->name('data-orang-tua.patch');
+    Route::delete('data-orang-tua/{id?}', 'destroy')->name('data-orang-tua.destroy');
 });
 
 Route::controller(DocumentController::class)->group(function () {
     Route::get('berkas', 'index')->name('berkas');
-    Route::post('berkas/store', 'store')->name('berkas.store');
-    Route::put('berkas/update/{id?}', 'update')->name('berkas.update');
-    Route::delete('berkas/destroy/{id?}', 'destroy')->name('berkas.destroy');
+    Route::patch('berkas', 'update')->name('berkas.patch');
+    Route::delete('berkas', 'destroy')->name('berkas.destroy');
+});
+
+Route::controller(InformationController::class)->group(function () {
+    Route::get('informasi', 'index')->name('informasi');
+
+    Route::get('informasi/get', 'get')->name('informasi.get');
+});
+
+Route::controller(StudentController::class)->group(function () {
+    Route::get('siswa', 'index')->name('siswa');
+
+    Route::get('siswa/get', 'get')->name('siswa.get');
+    Route::patch('siswa/ubah-status', 'ubahStatus')->name('siswa.ubah-status');
 });
 

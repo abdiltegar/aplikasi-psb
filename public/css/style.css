@@ -1,7 +1,8 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #eee !important;
+    background-color: #6f9dff !important;
+    /* background: linear-gradient(300deg, rgba(137,151,255,1) 0%, rgba(171,167,255,1) 50%, rgba(200,123,255,1) 100%); */
 }
 
 .footer {
@@ -21,4 +22,8 @@ body{
 .nav-link.active{
     background-color: rgba(0,0,0,.075) !important;
     color: black !important;
+}
+
+.sidebar-menu-link{
+    padding-left: 10px !important;
 }

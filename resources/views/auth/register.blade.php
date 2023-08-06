@@ -98,7 +98,7 @@
                                     <label for="jenis_kelamin" class="col-md-2 col-form-label text-md-end">Jenis Kelamin</label>
 
                                     <div class="col-md-2">
-                                        <select id="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required autocomplete="jenis_kelamin">
+                                        <select id="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required autocomplete="jenis_kelamin">
                                             <option value="1" {{ old('jenis_kelamin') == 1 ? 'selected' : '' }}>Laki - Laki</option>
                                             <option value="2" {{ old('jenis_kelamin') == 2 ? 'selected' : '' }}>Perempuan</option>
                                         </select>

@@ -58,7 +58,8 @@ class Siswa extends Model
 		'photo',
 		'ijazah',
 		'kk',
-		'status_id'
+		'status_id',
+		'approval_date'
 	];
 
 	public function status()

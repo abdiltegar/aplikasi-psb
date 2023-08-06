@@ -10,8 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +22,15 @@
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- Kendo -->
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.6.0/default/default-main.css" />
+
+    {{-- <script src="https://kendo.cdn.telerik.com/2023.2.718/js/jquery.min.js"></script> --}}
+    {{-- <script src="https://kendo.cdn.telerik.com/2023.2.718/js/jszip.min.js"></script> --}}
+    <script src="https://kendo.cdn.telerik.com/2023.2.718/js/kendo.all.min.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -66,7 +77,7 @@
                                 <a class="nav-link {{ request()->segment(1) == 'berkas' ? 'active' : 'link-dark' }}" href="{{ route('berkas') }}">Berkas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->segment(1) == 'berkas' ? 'active' : 'link-dark' }}" href="{{ route('berkas') }}">Informasi</a>
+                                <a class="nav-link {{ request()->segment(1) == 'informasi' ? 'active' : 'link-dark' }}" href="{{ route('informasi') }}">Informasi</a>
                             </li>
                             @endif
                             <li class="nav-item dropdown">
@@ -108,6 +119,55 @@
             </div>
         </div>
     </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --}}
+    
+    {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> --}}
+    
+    <script src="https://kendo.cdn.telerik.com/2023.2.718/js/kendo.all.min.js"></script>
+
+    <script>
+        var bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September' , 'Oktober', 'November', 'Desember'];
+
+        const indoDateTime = (datetime) => {
+            if (datetime) {
+                try {
+        
+                    var date = datetime.split('T')[0];
+                    var time = datetime.split('T')[1];
+                    
+                    var tanggal = date.split('-')[2];
+                    var bulan = date.split('-')[1];
+                    var tahun = date.split('-')[0];
+
+                    var jam = time.split(':')[0];
+                    var menit = time.split(':')[1];
+                    
+                    return tanggal+" "+bulanIndo[bulan.replace(/^0+/, '')]+" "+ tahun +" "+ jam +":"+ menit;
+                } catch (error) {
+                    return '';
+                }
+            }
+            return '';
+        }
+
+        const indoDate = (datetime) => {
+            if (datetime) {
+                try {
+        
+                    var date = datetime.split('T')[0];
+                    
+                    var tanggal = date.split('-')[2];
+                    var bulan = date.split('-')[1];
+                    var tahun = date.split('-')[0];
+                    
+                    return tanggal+" "+bulanIndo[bulan.replace(/^0+/, '')]+" "+ tahun;
+                } catch (error) {
+                    return '';
+                }
+            }
+            return '';
+        }
+    </script>
 </body>
 </html>
