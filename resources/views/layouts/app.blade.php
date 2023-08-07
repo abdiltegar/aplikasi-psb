@@ -25,11 +25,12 @@
 
     <!-- Kendo -->
 
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.6.0/default/default-main.css" />
-
-    {{-- <script src="https://kendo.cdn.telerik.com/2023.2.718/js/jquery.min.js"></script> --}}
-    {{-- <script src="https://kendo.cdn.telerik.com/2023.2.718/js/jszip.min.js"></script> --}}
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.6.0/classic/classic-main.css" />
+    <link href="{{ asset('kendo/styles/kendo.default-v2.min.css') }}" rel="stylesheet">
     <script src="https://kendo.cdn.telerik.com/2023.2.718/js/kendo.all.min.js"></script>
+
+    {{-- Sweet Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>

@@ -274,27 +274,35 @@
     });
 
     function submitUbahStatus(){
-            $.ajax({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                },
-                url: "{{ route('siswa.ubah-status') }}",
-                type: "PATCH",
-                data: {
-                    siswa_id : $('#form-status-siswa_id').val(),
-                    status_id : $('#form-status-status_id').val()
-                },
-                success: function (res) {
-                    console.log(res);
-                    if(res.status){
-                        kendo.alert("Berhasil merubah status siswa!");
-                        $('#table-siswa').data('kendoGrid').dataSource.read();
-                    }else{
-                        kendo.alert("Gagal merubah status siswa! "+ res.message);
-                    }
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: "{{ route('siswa.ubah-status') }}",
+            type: "PATCH",
+            data: {
+                siswa_id : $('#form-status-siswa_id').val(),
+                status_id : $('#form-status-status_id').val()
+            },
+            success: function (res) {
+                console.log(res);
+                if(res.status){
+                    Swal.fire(
+                        'Berhasil!',
+                        'Berhasil merubah status siswa',
+                        'success'
+                    )
+                    $('#table-siswa').data('kendoGrid').dataSource.read();
+                }else{
+                    Swal.fire(
+                        'Gagal!',
+                        'Gagal merubah status siswa! '+ res.message,
+                        'error'
+                    )
                 }
-            });
-        }
+            }
+        });
+    }
 </script>
 
 @endsection

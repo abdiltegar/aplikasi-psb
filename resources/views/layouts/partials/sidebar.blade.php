@@ -4,19 +4,22 @@
             @if(Auth::user()->role_id == 1)
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'home' ? 'active' : 'link-dark' }}" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'home' ? 'active' : 'link-dark' }}" href="{{ route('home') }}"><span class="k-icon k-i-home"></span> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'siswa' ? 'active' : 'link-dark' }}" href="{{ route('siswa') }}">Siswa</a>
+                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'siswa' ? 'active' : 'link-dark' }}" href="{{ route('siswa') }}"><span class="k-icon k-i-user"></span> Siswa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'informasi' ? 'active' : 'link-dark' }}" href="{{ route('informasi') }}">Informasi</a>
+                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'informasi' ? 'active' : 'link-dark' }}" href="{{ route('informasi') }}"><span class="k-icon k-i-info-circle"></span> Informasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-menu-link {{ request()->segment(1) == 'pengguna' ? 'active' : 'link-dark' }}" href="{{ route('pengguna') }}"><span class="k-icon k-i-user"></span> Data Pengguna</a>
                 </li>
             </ul>
             @elseif(Auth::user()->role_id == 2 && $siswa != null)
             <div id="student-profile" class="text-center" style="padding-top:20px">
                 <img src="{{ asset('storage/photo') }}/{{$siswa->photo}}" class="preview-photo"><br><br>
-                <table class="table table-sm table-striped" style="text-align:left">
+                <table class="table table-sm table-striped table-bordered" style="text-align:left">
                     <tr><td>Nama </td><td> : </td><td>{{$siswa->nama}}</td></tr>
                     <tr><td>NISN </td><td> : </td><td>{{$siswa->nisn}}</td></tr>
                     <tr><td>NIK </td><td> : </td><td>{{$siswa->nik}}</td></tr>

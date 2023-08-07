@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Status;
+use App\Models\WaliMurid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -60,6 +62,32 @@ class StudentController extends Controller
         }catch(\Exception $e){
             $response['status'] = false;
             $response['message'] = $e->getMessage();
+        }
+
+        return response()->json($response);
+    }
+
+    public function destroy(Request $request){
+        $response = [];
+        $response['status'] = true;
+        $response['message'] = "success";
+
+        try{
+            $siswa = Siswa::find($request->siswa_id);
+            if($siswa != null){
+                WaliMurid::where('siswa_id', $siswa->siswa_id)->delete();
+            }
+
+            // TODO deleting siswa's files
+            Storage::disk('public')->delete('photo/'.$siswa->photo);
+            Storage::disk('public')->delete('ijazah/'.$siswa->ijazah);
+            Storage::disk('public')->delete('kk/'.$siswa->kk);
+
+            $siswa->delete();
+
+        }catch(\Exception $e){
+            $response['status'] = false;
+            $response['message'] = "";
         }
 
         return response()->json($response);

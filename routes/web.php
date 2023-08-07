@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ParentController;
@@ -28,7 +29,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::controller(ParentController::class)->group(function () {
     Route::get('data-orang-tua', 'index')->name('data-orang-tua');
     Route::patch('data-orang-tua', 'patch')->name('data-orang-tua.patch');
-    Route::delete('data-orang-tua/{id?}', 'destroy')->name('data-orang-tua.destroy');
 });
 
 Route::controller(DocumentController::class)->group(function () {
@@ -48,5 +48,13 @@ Route::controller(StudentController::class)->group(function () {
 
     Route::get('siswa/get', 'get')->name('siswa.get');
     Route::patch('siswa/ubah-status', 'ubahStatus')->name('siswa.ubah-status');
+});
+
+Route::controller(AccountController::class)->group(function () {
+    Route::get('pengguna', 'index')->name('pengguna');
+
+    Route::get('pengguna/get-all', 'get')->name('pengguna.get');
+    Route::put('pengguna', 'update')->name('pengguna.update');
+    Route::delete('pengguna', 'destroy')->name('pengguna.destroy');
 });
 

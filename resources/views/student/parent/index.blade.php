@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">Data Orang Tua</div>
                         <div class="card-body text-center" style="min-height: 300px;">
-                            <form action="{{ route('data-orang-tua.patch') }}" method="POST">
+                            <form method="POST" id="form-orang-tua">
                                 @csrf
                                 @method('PATCH')
 
@@ -140,10 +140,10 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         @if($ayah != null && $ibu != null)
-                                        <button class="btn btn-sm btn-primary" onclick="openEditable()" id="btn-edit">Edit</button>
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="openEditable()" id="btn-edit">Edit</button>
                                         @endif
-                                        <button type="submit" class="btn btn-sm btn-success" style="{{$ayah != null && $ibu != null ? 'display:none' : 'display:inline'}}" id="btn-simpan">Simpan</button>
-                                        <button class="btn btn-sm btn-danger" style="display:none" id="btn-cancel" onclick="closeEditable()">Batal</button>
+                                        <button type="button" class="btn btn-sm btn-success" style="{{$ayah != null && $ibu != null ? 'display:none' : 'display:inline'}}" id="btn-simpan" onclick="simpan()">Simpan</button>
+                                        <button type="button" class="btn btn-sm btn-danger" style="display:none" id="btn-cancel" onclick="closeEditable()">Batal</button>
                                     </div>
                                 </div>
                             </form>
@@ -172,6 +172,33 @@
         $('#btn-simpan').css('display', 'none');
         $('#btn-cancel').css('display', 'none');
         $('#btn-edit').css('display', 'inline');
+    }
+
+    function simpan(){
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: "{{ route('data-orang-tua.patch') }}",
+            type: "PATCH",
+            data: $('#form-orang-tua').serialize(),
+            success: function (res) {
+                console.log(res);
+                if(res.status){
+                    Swal.fire(
+                        'Berhasil!',
+                        res.message,
+                        'success'
+                    );
+                }else{
+                    Swal.fire(
+                        'Gagal!',
+                        res.message,
+                        'error'
+                    );
+                }
+            }
+        });
     }
 </script>
 
